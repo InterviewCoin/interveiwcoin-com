@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting to InterviewCoin…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="Redirecting to InterviewCoin" />
+  <meta property="og:description" content="Looks like a tiny typo. 'i before e' 😊 Sending you to the right place." />
+  <meta property="og:image" content="/assets/schoolmarm.png" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <style>
+    :root { --bg:#f9fafb; --fg:#0f172a; --muted:#475569; --accent:#0ea5e9; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid;
+      place-items: center;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--fg);
+      background: radial-gradient(1200px 800px at 50% -10%, #ffffff 0%, var(--bg) 70%);
+      padding: 24px;
+    }
+    .card {
+      max-width: 720px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(2,8,23,0.06);
+      text-align: center;
+    }
+    img {
+      max-width: 260px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 6px; }
+    p { color: var(--muted); margin: 6px 0 14px; }
+    .cta a {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: #0b4b63;
+      font-weight: 600;
+    }
+    .timer { font-variant-numeric: tabular-nums; font-weight: 600; }
+    footer { margin-top: 14px; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-live="polite">
+    <img src="/assets/schoolmarm.png" alt="Teacher pointing at a chalkboard that says 'i before e'." />
+    <h1>Oops — “i before e” 😊</h1>
+    <p>Looks like a small spelling slip. You’ll be redirected to the correct InterviewCoin site in <span class="timer" id="count">5</span> seconds.</p>
+    <div class="cta">
+      <a id="skipLink" href="#" rel="nofollow">Go now</a>
+    </div>
+    <footer>
+      If nothing happens, your browser may block meta refresh. The button above will take you there.
+    </footer>
+  </main>
+
+  <script>
+    // CHANGE THIS PER REPO:
+    const REDIRECT_TARGET = 'https://interviewcoin.com'; // or 'https://interviewcoin.org'
+    const SECONDS = 5;
+
+    document.getElementById('skipLink').href = REDIRECT_TARGET;
+
+    // Meta refresh as a fallback for super-old clients:
+    const meta = document.createElement('meta');
+    meta.httpEquiv = 'refresh';
+    meta.content = `${SECONDS}; url=${REDIRECT_TARGET}`;
+    document.head.appendChild(meta);
+
+    // Visible countdown + JS redirect (modern browsers)
+    let left = SECONDS;
+    const el = document.getElementById('count');
+    const tick = setInterval(() => {
+      left -= 1;
+      if (left <= 0) {
+        clearInterval(tick);
+        window.location.assign(REDIRECT_TARGET);
+      } else {
+        el.textContent = String(left);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
