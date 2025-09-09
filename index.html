@@ -4,82 +4,115 @@
   <meta charset="UTF-8" />
   <title>Redirecting to InterviewCoin…</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Open Graph / social preview -->
   <meta property="og:title" content="Redirecting to InterviewCoin" />
-  <meta property="og:description" content="Looks like a tiny typo. 'i before e' 😊 Sending you to the right place." />
-  <meta property="og:image" content="/assets/schoolmarm.png" />
+  <meta property="og:description" content="Oops! Looks like a tiny typo. We're sending you to the right place." />
+  <meta property="og:image" content="/assets/teacher-redirect.png" />
   <meta name="robots" content="noindex, nofollow" />
 
   <style>
-    :root { --bg:#f9fafb; --fg:#0f172a; --muted:#475569; --accent:#0ea5e9; }
-    html, body { height: 100%; margin: 0; }
+    :root {
+      --bg: #f8f9fa;
+      --fg: #212529;
+      --muted: #6c757d;
+      --accent: #007bff;
+      --accent-hover: #0056b3;
+      --card-bg: #ffffff;
+      --card-border: #dee2e6;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
     body {
       display: grid;
       place-items: center;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: var(--fg);
-      background: radial-gradient(1200px 800px at 50% -10%, #ffffff 0%, var(--bg) 70%);
+      background-color: var(--bg);
       padding: 24px;
+      box-sizing: border-box;
     }
     .card {
-      max-width: 720px;
+      max-width: 560px;
       width: 100%;
-      background: #fff;
-      border: 1px solid #e5e7eb;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(2,8,23,0.06);
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       text-align: center;
     }
     img {
-      max-width: 260px;
+      max-width: 100%;
       height: auto;
       border-radius: 12px;
-      margin-bottom: 16px;
-      display: inline-block;
+      margin-bottom: 24px;
+      display: block;
     }
-    h1 { font-size: 1.5rem; margin: 0 0 6px; }
-    p { color: var(--muted); margin: 6px 0 14px; }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    p {
+      color: var(--muted);
+      margin: 0 0 24px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
     .cta a {
       display: inline-block;
-      padding: 10px 16px;
-      border-radius: 10px;
+      padding: 12px 24px;
+      border-radius: 8px;
       text-decoration: none;
-      border: 1px solid var(--accent);
-      color: #0b4b63;
+      background-color: var(--accent);
+      color: #fff;
       font-weight: 600;
+      border: none;
+      transition: background-color 0.2s ease-in-out;
     }
-    .timer { font-variant-numeric: tabular-nums; font-weight: 600; }
-    footer { margin-top: 14px; font-size: 12px; color: var(--muted); }
+    .cta a:hover {
+      background-color: var(--accent-hover);
+    }
+    .timer {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    footer {
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
   <main class="card" role="main" aria-live="polite">
-    <img src="/assets/schoolmarm.png" alt="Teacher pointing at a chalkboard that says 'i before e'." />
-    <h1>Oops — “i before e” 😊</h1>
-    <p>Looks like a small spelling slip. You’ll be redirected to the correct InterviewCoin site in <span class="timer" id="count">5</span> seconds.</p>
+    <img src="/assets/teacher-redirect.png" alt="A friendly teacher points to a chalkboard explaining a spelling rule for InterviewCoin." />
+    <h1>Just a small typo...</h1>
+    <p>It happens! We're redirecting you to the right place in <span class="timer" id="count">10</span> seconds.</p>
     <div class="cta">
-      <a id="skipLink" href="#" rel="nofollow">Go now</a>
+      <a id="skipLink" href="#" rel="nofollow">Go to InterviewCoin Now</a>
     </div>
     <footer>
-      If nothing happens, your browser may block meta refresh. The button above will take you there.
+      If you are not redirected automatically, please click the button above.
     </footer>
   </main>
 
   <script>
-    // CHANGE THIS PER REPO:
-    const REDIRECT_TARGET = 'https://interviewcoin.com'; // or 'https://interviewcoin.org'
-    const SECONDS = 5;
+    // This is for the interveiwcoin.com redirect
+    // The target is the CORRECTLY spelled domain.
+    const REDIRECT_TARGET = 'https://interviewcoin.com';
+    const SECONDS = 10;
 
     document.getElementById('skipLink').href = REDIRECT_TARGET;
 
-    // Meta refresh as a fallback for super-old clients:
+    // Meta refresh for fallback
     const meta = document.createElement('meta');
     meta.httpEquiv = 'refresh';
     meta.content = `${SECONDS}; url=${REDIRECT_TARGET}`;
     document.head.appendChild(meta);
 
-    // Visible countdown + JS redirect (modern browsers)
+    // Visible countdown + JS redirect
     let left = SECONDS;
     const el = document.getElementById('count');
     const tick = setInterval(() => {
